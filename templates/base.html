@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}base{% endblock %}</title>
+    <link rel="stylesheet" href="{% get_static_prefix %}css/cascade.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
+                <!-- Branding or Logo -->
+                <a class="navbar-brand" href="#">Project</a>
+
+                <!-- Navigation Links Container -->
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <!-- Unordered List for Navigation Links -->
+                    <ul class="navbar-nav ms-auto">
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home' %}">Home</a>
+                            <a class="nav-link" href="{% url 'num' number=69 %}">NumGimmick</a>
+                            <a class="nav-link" href="{% url 'imgpage' %}">ImgPage</a>
+                            <a class="nav-link" href="{% url 'signup' %}">Sign up</a>
+                            <a class="nav-link" href="{% url 'login' %}">Login</a>
+                            <a class="nav-link" href="{% url 'create_note' %}">Create Notes</a>
+                            <a class="nav-link" href="{% url 'notes' %}">Notes</a>
+                            
+                        </li>
+                    </ul>
+                </div>
+    </div>
+        </nav>
+    <div>
+        {% if user.is_authenticated %}
+            Olá {{user.username}}! Bem vindo novamente, Vamos Trabalhar pra valer!?
+        {% endif %}
+    </div>
+
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+
+    {% block content %}
+    
+    {% endblock %}
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+body{
+    background-color:lightslategrey;
+    
+}
+
+#navbarCollapse{
+    margin-top: -10px;
+    position: relative;
+}
+
+.imagem{
+    position: absolute;
+    top: 200px;
+    left: 400px;
+    border: 6px solid green;
+}
+
+#gaytext{
+    color: chartreuse;
+    position: relative;
+    top: -20px;
+    left: 520px;
+}
+
+.navbar-brand {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color:rgb(9, 42, 76);}
+
+#username{
+    margin:10px 20px;
+}
+
+#password{
+    margin: 10px 20px;
+}
+
+.error{
+    color: crimson;
+}
+
+#note_button{
+    margin-left: 24px;
+}

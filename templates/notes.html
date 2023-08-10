@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %} Notes {% endblock %}
+
+{% block content %}
+
+    <style>
+        .note-item {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .note-content{
+            flex: 1;
+        }
+
+        #delete_button{
+            background-color: red;
+            color: white;
+            transition: background-color 0.3s ease-in-out; /* fucking god of an transition, use this for every button */
+            
+        }
+        #delete_button:hover{
+            background-color: darkred;
+        }
+
+    </style>
+
+    <h1>Notes:</h1>
+
+    <ul>
+        {% for note in notes %}
+            <li class="note-item">
+                <div class="note-content">
+                    <p><strong>User:</strong>{{note.author}}</p>
+                    <p><strong>Note:</strong>{{note.description}}</p>
+                    <p><strong>Posted:</strong>{{note.posted_time|date:"F d, Y H:i:s" }}</p>
+                    <p><strong>{{ note.posted_time|timesince }}</strong> ago</p>
+                </div>
+        
+                <div><form method="POST" action="{% url 'delete_note' note_id=note.id %}">
+                    {% csrf_token %}
+                    <button type="submit" id="delete_button">Delete</button>
+                    </form>
+                </div>
+            </li>
+
+        {% endfor %}
+    </ul>
+    <button class="btn btn-success"><a href="{% url 'create_note' %}">New Note</a></button>
+
+{% endblock %}

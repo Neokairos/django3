@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Create Notes{% endblock %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="btn btn-success" id="note_button">Submit</button>
+    </form>
+    <p>Go to <a href="notes.html">Notes </a>Page</p>
+{% endblock %}
