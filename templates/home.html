@@ -4,6 +4,8 @@
 
     {% if user.is_authenticated == False %}
         Olá Visitante! <a href="{% url 'signup' %}">crie uma conta </a>para ter acesso a todos os beneficios
+    {% else %}
+        Olá {{user.username}}! Bem vindo novamente, Bora BUSXXCA!
     {% endif %}
     
     

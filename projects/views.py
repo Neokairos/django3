@@ -89,6 +89,6 @@ def edit_note(request, note_id):
             return redirect('notes')
         
     else:
-        NoteForm(instance=note)
+        form = NoteForm(instance=note)
     return render(request, 'edit_note.html', {'form':form, 'note':note})
 
