@@ -5,7 +5,7 @@
 
     <style>
         .note-item {
-            border-bottom: 1px solid #ccc;
+            border-bottom: 2px solid #ccc;
             padding-bottom: 10px;
             margin-bottom: 10px;
             display: flex;
@@ -21,11 +21,35 @@
             background-color: red;
             color: white;
             transition: background-color 0.3s ease-in-out; /* fucking god of an transition, use this for every button */
+            border: 1px solid #4a1818;
             
         }
         #delete_button:hover{
             background-color: darkred;
         }
+
+        #NoteButton{
+            background-color: #28a745;
+            transition: background-color 0.3s ease-in-out; 
+            color: rgb(255, 255, 255);
+            
+        }
+
+        #NoteButton:hover{
+            background-color: rgb(8, 106, 31);
+
+        }
+
+        #edit_button{
+            background-color: rgb(175, 190, 13);
+            color: white;
+            transition: background-color  0.5s ease-in-out;
+            border: 1px solid rgb(100, 97, 11);}
+
+        #edit_button:hover{
+            background-color: rgb(100, 97, 8);
+        }
+                
 
     </style>
 
@@ -45,11 +69,16 @@
                     {% csrf_token %}
                     <button type="submit" id="delete_button">Delete</button>
                     </form>
+                    <form method="POST" action="{% url 'edit_note' note_id=note.id %}">
+                        {% csrf_token %}
+                        <button type="submit" id="edit_button">Edit</button>
+                        </form>
                 </div>
+
             </li>
 
         {% endfor %}
     </ul>
-    <button class="btn btn-success"><a href="{% url 'create_note' %}">New Note</a></button>
+    <button class="btn btn-success" id="NoteButton"><a href="{% url 'create_note' %}">New Note</a></button>
 
 {% endblock %}

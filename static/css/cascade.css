@@ -28,13 +28,8 @@ body{
     font-weight: bold;
     color:rgb(9, 42, 76);}
 
-#username{
-    margin:10px 20px;
-}
 
-#password{
-    margin: 10px 20px;
-}
+
 
 .error{
     color: crimson;
@@ -43,3 +38,4 @@ body{
 #note_button{
     margin-left: 24px;
 }
+

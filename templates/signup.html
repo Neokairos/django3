@@ -3,43 +3,62 @@
 {% block content %}
 
     <style>#username{
-        margin-bottom:10px;
+        width: 350px;
+        height: 50px;
+        padding-top: 10px;
+        margin:10px;
+        border: 2px solid #acabab;
+        background-color: #f9f9f9;
+        color: #333;
     }
     
     #password{
-        margin-bottom:20px;
-    }</style>
+        width: 350px;
+        height: 50px;
+        padding-top: 10px;
+        margin:10px;
+        border: 2px solid #acabab;
+        background-color: #f9f9f9;
+        color: #333;}
 
-    <form method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" class="form-control">
-            {% if form.errors.username %}
-                <div class="text-danger">{{ form.errors.username }}</div>
-            {% endif %}
-        </div>
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" class="form-control" required>
-            {% if form.errors.password %}
-                <div class="text-danger">{{ form.errors.password }}</div>
-            {% endif %}
-        </div>
-
+    .center-elements{
+        display: grid;
+        place-items: center;
         
+    }
 
-        <button type="submit" class="btn btn-success">Sign-up</button>
-    </form>
-    <p>have an account? login<a href="{% url 'login' %}"> here</a></p>
+    </style>
+    <div class="center-elements">
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" class="form-control">
+                {% if form.errors.username %}
+                    <div class="text-danger">{{ form.errors.username }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" class="form-control" required>
+                {% if form.errors.password %}
+                    <div class="text-danger">{{ form.errors.password }}</div>
+                {% endif %}
+            </div>
 
-    {% if messages %}
-    <div class="alert alert-success">
-        {% for message in messages %}
-        {{ message }}
-        {% endfor %}
-    </div>
-    {% endif %}
+            
+            <button type="submit" class="btn btn-success">Sign-up</button>
+        </form>
+        <p>have an account? login<a href="{% url 'login' %}"> here</a></p>
+
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
 
     
 {% endblock %}

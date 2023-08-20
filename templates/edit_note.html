@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Note Editor{% endblock %}
+{% block content %}
+    <style>
+        #edit_button{
+            background-color: rgb(175, 190, 13);
+            color: white;
+            transition: backgroung-color ease-in-out;
+            border: 1px solid rgb(100, 97, 11);}
+
+        #edit_button:hover{
+            background-color: rgb(100, 97, 8);
+        }
+                
+
+    </style>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" id="edit_button">Save Changes</button>
+    </form>
+
+
+{% endblock %}
