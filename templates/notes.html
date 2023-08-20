@@ -59,7 +59,12 @@
         {% for note in notes %}
             <li class="note-item">
                 <div class="note-content">
-                    <p><strong>User:</strong>{{note.author}}</p>
+                    <p><strong>User:</strong> 
+                        {% if note.author %}{{ note.author }}
+                        {% else %}
+                            Undefined
+                        {% endif %}
+                    </p>
                     <p><strong>Note:</strong>{{note.description}}</p>
                     <p><strong>Posted:</strong>{{note.posted_time|date:"F d, Y H:i:s" }}</p>
                     <p><strong>{{ note.posted_time|timesince }}</strong> ago</p>
