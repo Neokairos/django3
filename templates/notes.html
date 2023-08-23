@@ -55,6 +55,13 @@
 
     <h1>Notes:</h1>
 
+    <div class="SearchBar">
+        <form class="d-flex" method="get" action="{% url 'search_bar' %}">
+            <input class="form-control me-2" type="search" name="search_query" placeholder="Search Notes">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+
     <ul>
         {% for note in notes %}
             <li class="note-item">

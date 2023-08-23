@@ -9,6 +9,7 @@ from .forms import NoteForm
 from datetime import datetime
 from .models import Note
 from .forms import NoteForm
+from .forms import SearchForm
 
 
 def home(request):
@@ -92,3 +93,15 @@ def edit_note(request, note_id):
         form = NoteForm(instance=note)
     return render(request, 'edit_note.html', {'form':form, 'note':note})
 
+
+
+def search_bar(request):
+    form = SearchForm(request.GET)
+    results = []
+
+    if form.is_valid():
+        search_query = form.cleaned_data['search_query']
+        results = Note.objects.filter(content__icontains=search_query)
+
+    notes = Note.objects.all()
+    return render(request,'notes.html',{'form':form,'results':results,'notes':notes})
