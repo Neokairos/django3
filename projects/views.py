@@ -10,7 +10,7 @@ from datetime import datetime
 from .models import Note
 from .forms import NoteForm
 from .forms import SearchForm
-
+from django.db.models import Q
 
 def home(request):
     return render(request, 'home.html')
@@ -101,7 +101,12 @@ def search_bar(request):
 
     if form.is_valid():
         search_query = form.cleaned_data['search_query']
-        results = Note.objects.filter(content__icontains=search_query)
+        notes = Note.objects.filter(Q(author__icontains=search_query) | Q(description__icontains=search_query))
 
-    notes = Note.objects.all()
+        sorted_notes = sorted(
+            notes,
+            key=lambda note: note.author.startswith(search_query),
+            reverse=True)
+
+    results = [{'author':note.author,'description': note.description}for note in sorted_notes]
     return render(request,'notes.html',{'form':form,'results':results,'notes':notes})

@@ -13,5 +13,6 @@ urlpatterns = [path('home/', views.home, name ="home" ),
             path('create/', views.create_note, name='create_note'),
             path('notes', views.notes_page, name='notes'),
             path('delete/<int:note_id>/', views.delete_note, name='delete_note'),
-            path('edit_note/<int:note_id>/', views.edit_note, name='edit_note')
+            path('edit_note/<int:note_id>/', views.edit_note, name='edit_note'),
+            path('search/',views.search_bar,name='search_bar' )
             ]

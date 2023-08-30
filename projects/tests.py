@@ -9,6 +9,5 @@ class SearchTestCase(TestCase):
     def test_search_notes_on_notes(self):
         response = self.client.get('/notes', {'search_query':'test'})
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'this is a note.')
-        self.assertContains(response, 'this is another note.')
-
+        self.assertContains(response, 'this is a note')
+        self.assertContains(response, 'this is another note')

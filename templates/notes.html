@@ -28,17 +28,16 @@
             background-color: darkred;
         }
 
-        #NoteButton{
-            background-color: #28a745;
+        #anchortransition{
+            
             transition: background-color 0.3s ease-in-out; 
-            color: rgb(255, 255, 255);
             
         }
+            
+            
+        
 
-        #NoteButton:hover{
-            background-color: rgb(8, 106, 31);
-
-        }
+       
 
         #edit_button{
             background-color: rgb(175, 190, 13);
@@ -49,7 +48,12 @@
         #edit_button:hover{
             background-color: rgb(100, 97, 8);
         }
-                
+           
+        #Search_button{
+            transition: background-color  0.4s ease-in-out;
+            border: 1px solid rgb(12, 88, 54);}
+        
+        
 
     </style>
 
@@ -58,7 +62,7 @@
     <div class="SearchBar">
         <form class="d-flex" method="get" action="{% url 'search_bar' %}">
             <input class="form-control me-2" type="search" name="search_query" placeholder="Search Notes">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <button id="Search_button" class="btn btn-outline-success" type="submit">Search</button>
         </form>
     </div>
 
@@ -91,6 +95,6 @@
 
         {% endfor %}
     </ul>
-    <button class="btn btn-success" id="NoteButton"><a href="{% url 'create_note' %}">New Note</a></button>
+    <button ><a class="btn btn-outline-success" id="anchortransition" href="{% url 'create_note' %}">New Note</a></button>
 
 {% endblock %}
