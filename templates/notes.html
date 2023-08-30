@@ -4,6 +4,9 @@
 {% block content %}
 
     <style>
+
+        
+
         .note-item {
             border-bottom: 2px solid #ccc;
             padding-bottom: 10px;
@@ -52,6 +55,15 @@
         #Search_button{
             transition: background-color  0.4s ease-in-out;
             border: 1px solid rgb(12, 88, 54);}
+
+        #SearchBarIcon{
+            padding: 20px;
+
+        }
+        #SearchBarIcon:hover{
+            color: blue;
+
+        }
         
         
 
@@ -61,8 +73,9 @@
 
     <div class="SearchBar">
         <form class="d-flex" method="get" action="{% url 'search_bar' %}">
+            <i id="SearchBarIcon" class="fa-solid fa-magnifying-glass fa-beat"></i> 
             <input class="form-control me-2" type="search" name="search_query" placeholder="Search Notes">
-            <button id="Search_button" class="btn btn-outline-success" type="submit">Search</button>
+            <button id="Search_button" class="btn btn-outline-success" type="submit">Search</button> 
         </form>
     </div>
 
@@ -96,5 +109,6 @@
         {% endfor %}
     </ul>
     <button ><a class="btn btn-outline-success" id="anchortransition" href="{% url 'create_note' %}">New Note</a></button>
+    <script src="https://kit.fontawesome.com/6edd17fb65.js" crossorigin="anonymous"></script>
 
 {% endblock %}
