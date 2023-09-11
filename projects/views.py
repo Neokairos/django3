@@ -10,6 +10,7 @@ from datetime import datetime
 from .models import Note
 from .forms import NoteForm
 from .forms import SearchForm
+from .forms import UserForm
 from django.db.models import Q
 
 def home(request):
@@ -23,17 +24,21 @@ def num(request, number):
 
 def signupView(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request,user)
-            messages.success(request, 'You have successfully signed in!')
-            return redirect(reverse('home'))
-        else:
-            messages.error(request, 'Registration failed. Please correct the errors below.')
+        form = UserForm(request.POST)
+        try:
+            if form.is_valid():
+                user = form.save()
+                login(request,user)
+                messages.success(request, 'You have successfully signed in!')
+                return redirect(reverse('home'))
+            else:
+                messages.error(request, 'Registration failed. Please correct the mistakes.')
+
+        except Exception as e:
+            messages.error(request,f'Failed to Sign up due unexpected error:{str(e)}')
 
     else: 
-        form = UserCreationForm()
+        form = UserForm()
 
     return render(request, 'signup.html',{'form':form})
 

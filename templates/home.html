@@ -2,10 +2,10 @@
 {% block title %}Homepage{% endblock %}
 {% block content %}
 
-    {% if user.is_authenticated == False %}
-        Olá Visitante! <a href="{% url 'signup' %}">crie uma conta </a>para ter acesso a todos os beneficios
-    {% else %}
+    {% if user.is_authenticated%}
         Olá {{user.username}}! Bem vindo novamente, Bora BUSXXCA!
+    {% elif not user.is_authenticated %}
+        Olá Visitante! <a href="{% url 'signup' %}">Crie uma conta </a>para ter acesso a todos os beneficios
     {% endif %}
     
     
